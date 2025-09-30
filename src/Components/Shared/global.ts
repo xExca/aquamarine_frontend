@@ -1,0 +1,1 @@
+export const olive = "#545333";
