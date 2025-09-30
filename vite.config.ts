@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/Aquamarine/',
+  base: '/aquamarine_frontend/',
   plugins: [
     react(),
     tailwindcss(),
