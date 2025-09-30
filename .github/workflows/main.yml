@@ -18,20 +18,26 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # run all shell commands from the /frontend folder
-    defaults:
-      run:
-        working-directory: frontend
-
     steps:
       - uses: actions/checkout@v4
+
+      - name: Show workspace (debug)
+        run: |
+          pwd
+          ls -la
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install deps
-        run: npm i --no-audit --no-fund
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --no-audit --no-fund
+          else
+            npm i --no-audit --no-fund
+          fi
 
       - name: Build
         run: npm run build
