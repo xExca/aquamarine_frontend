@@ -21,17 +21,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show workspace (debug)
-        run: |
-          pwd
-          ls -la
-
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
-      - name: Install deps
+      - name: Install dependencies
         run: |
           if [ -f package-lock.json ]; then
             npm ci --no-audit --no-fund
