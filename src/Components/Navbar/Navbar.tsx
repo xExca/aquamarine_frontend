@@ -4,6 +4,8 @@ import { GoPerson, GoPersonFill, GoHeart, GoHeartFill } from "react-icons/go"
 import { IoIosArrowDown } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 import Bag from "./Bag"
+import axios from "../../lib/axios"
+import { createProduct } from "../../api"
 
 const Navbar = () => {
   const [hoveredMenu, setHoveredMenu] = useState<"shop" | "customer" | null>(null)
@@ -23,6 +25,16 @@ const Navbar = () => {
     hideTimeout.current = setTimeout(() => {
       setHoveredMenu(null)
     }, 200)
+  }
+  
+  const handleTestAPI = () => {
+    const response = createProduct({
+      'price': 1000,
+      'productName': 'test',
+      'url': 'assets/swimsuit/sunset_orchid_bikini.jpg'
+    });
+
+    console.log(response);
   }
 
   const menuContent = {
@@ -89,6 +101,7 @@ const Navbar = () => {
             <IoIosArrowDown size={20} />
           </div>
           <div className="inline-flex p-3 text-red-600" onClick={() => navigate('/sale')}>Sale</div>
+          <div className="inline-flex p-3" onClick={handleTestAPI}>TEST API</div>
         </div>
 
         <div className="flex gap-3">
