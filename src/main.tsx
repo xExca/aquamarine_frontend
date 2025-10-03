@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import AppRoute from './Router/router.tsx'
 import { ToastContainer } from 'react-toastify'
+import { seededIfNeeded } from './db.ts'
+
+await seededIfNeeded();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

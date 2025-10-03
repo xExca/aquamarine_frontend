@@ -1,9 +1,8 @@
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { withBase } from "./helper";
 
 type Props = {
-  productId: number;
+  productId: string;
   productName: string;
   price: number; 
   url: string;
@@ -40,9 +39,9 @@ const ProductImage = ({
       onClick={handleClick}
     >
       <img
-        src={withBase(url)}
+        src={url}
         alt={productName}
-        className="w-full h-auto object-cover transition duration-300 group-hover:scale-105 group-hover:blur-[1px]"
+        className="w-full h-[35vw] object-cover transition duration-300 group-hover:scale-105 group-hover:blur-[1px]"
       />
 
       {isSale && (
@@ -51,7 +50,6 @@ const ProductImage = ({
         </span>
       )}
 
-      {/* Overlay content on hover */}
       <div className="absolute inset-0 flex flex-col gap-2 px-8 py-16 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-500">
         <h3 className="text-white font-bold text-3xl leading-tight">
           {productName}

@@ -1,7 +1,9 @@
 import CollectionsImage from "../Shared/CollectionsImage"
 import HomeFull from "../Shared/HomeFull"
+import { useRandomProducts } from "../Shared/Hooks/useProducts";
 
 const Collections = () => {
+  const images = useRandomProducts(2) ?? [];
   return (
     <HomeFull 
       title="Shop Our Collection" 
@@ -24,8 +26,8 @@ const Collections = () => {
         </div>
 
         <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <CollectionsImage src="assets/swimsuit/sunset_orchid_bikini_top_dark.jpg" />
-          <CollectionsImage src="assets/swimsuit/sunset_orchid_bikini.jpg" />
+          <CollectionsImage src={images[0]?.url ?? ""} />
+          <CollectionsImage src={images[1]?.url ?? ""} />
         </div>
       </div>
     </HomeFull>
