@@ -1,4 +1,5 @@
-import { db, type Product } from "./db";
+import type { Product } from "./Components/Shared/Types/ProductImageProps";
+import { db } from "./db";
 import axios from "./lib/axios";
 
 function toLocalProduct(
@@ -11,6 +12,7 @@ function toLocalProduct(
     productName: server.name,
     price: server.price,
     url: url ?? current?.url ?? '',
+    discounted: current?.discounted ?? 0,
     updatedAt: server.updatedAt,
     deletedAt: current?.deletedAt ?? 0, 
   };

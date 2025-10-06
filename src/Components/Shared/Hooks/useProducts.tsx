@@ -15,7 +15,10 @@ export default function useProducts() {
     productName: p.productName,
     price: p.price,
     url: p.url,
+    discounted: p.discounted
   }));
+  
+  console.log(images, "Hooks console");
 
   return images;
 }
