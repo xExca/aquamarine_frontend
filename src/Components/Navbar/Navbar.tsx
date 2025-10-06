@@ -4,7 +4,6 @@ import { GoPerson, GoPersonFill, GoHeart, GoHeartFill } from "react-icons/go"
 import { IoIosArrowDown } from "react-icons/io"
 import { useNavigate } from "react-router-dom"
 import Bag from "./Bag"
-import axios from "../../lib/axios"
 import { createProduct } from "../../api"
 
 const Navbar = () => {

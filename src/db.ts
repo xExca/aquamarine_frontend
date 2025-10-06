@@ -22,7 +22,7 @@ if (import.meta.env.DEV) {
   (window as any).db = db;
 }
 
-type Seed = { products: Array<{ productName: string; price: number; url: string }> };
+type Seed = { products: Array<{ productName: string; price: number; url: string; discounted: number}> };
 
 async function loadSeed(seed: Seed) {
   const now = Date.now();
@@ -33,6 +33,7 @@ async function loadSeed(seed: Seed) {
         productName: p.productName,
         price: p.price,
         url: p.url,
+        discounted: p.discounted,
         updatedAt: now,
         deletedAt: 0,
       });

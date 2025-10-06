@@ -17,7 +17,7 @@ const Sale = () => {
               </p>
             </div>
         </section>
-        <Content isSale />
+        <Content />
       </>
   )
 }

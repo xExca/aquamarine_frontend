@@ -1,4 +1,4 @@
-import { createHashRouter, BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "../Components/Layout/DefaultLayout";
 import CheckoutLayout from "../Components/Layout/CheckoutLayout";
 import Home from "../Components/Page/Home";

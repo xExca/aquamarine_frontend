@@ -1,19 +1,25 @@
 import ProductImage from '../Shared/ProductImage'
+import useProducts from '../Shared/Hooks/useProducts';
 
-type Props = {
-  isSale?: boolean;
-}
-const Content = ({ isSale }: Props) => {
+const Content = () => {
+  const images = useProducts();
+
+  const filteredImages = images.filter((p) => p.discounted > 0).map((p) => ({
+    id: p.id,
+    productName: p.productName,
+    price: p.price,
+    url: p.url,
+    discounted: p.discounted
+  }));
+  
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mt-4">
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099} />
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1099}/>
-      <ProductImage productName="Sunset Orchid Bikini Set" price={1299} url="assets/swimsuit/sunset_orchid_bikini.jpg" productId={1} isProduct isSale={isSale} salePrice={1299} />
+      {filteredImages.map((image, index) => {
+        return (
+          <ProductImage key={index} productId={image.id} productName={image.productName} price={image.price} url={image.url} isProduct discounted={image.discounted} />
+        )
+      })}
     </div>
   )
 }

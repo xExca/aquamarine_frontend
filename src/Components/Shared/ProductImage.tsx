@@ -7,9 +7,7 @@ type Props = {
   price: number; 
   url: string;
   isProduct?: boolean;
-  isSale?: boolean;
-  salePrice?: number;     
-  discountPercent?: number; 
+  discounted: number; 
 };
 
 const ProductImage = ({
@@ -18,21 +16,13 @@ const ProductImage = ({
   price,
   url,
   isProduct = false,
-  isSale = false,
-  salePrice,
-  discountPercent,
+  discounted,
 }: Props) => {
   const navigate = useNavigate();
   const handleClick = () => navigate(`/product/${productId}`);
 
-  const pct =
-    isSale
-      ? discountPercent ??
-        (salePrice ? Math.round(((price - salePrice) / price) * 100) : undefined)
-      : undefined;
-
   const formatPeso = (n: number) => `₱${n.toLocaleString("en-PH")}`;
-
+  const salePrice = discounted ? price - (price * discounted) / 100 : null;
   return (
     <div
       className={`relative ${isProduct ? "group" : ""} overflow-hidden cursor-pointer`}
@@ -44,9 +34,9 @@ const ProductImage = ({
         className="w-full h-[35vw] object-cover transition duration-300 group-hover:scale-105 group-hover:blur-[1px]"
       />
 
-      {isSale && (
+      {discounted > 0 && (
         <span className="absolute left-2 top-2 z-10 bg-rose-500 px-2 py-1 text-xs font-semibold text-white shadow">
-          {pct ? `${pct}% Off` : "Sale"}
+           {`${discounted} % Off`}
         </span>
       )}
 
@@ -56,7 +46,7 @@ const ProductImage = ({
         </h3>
 
         {/* Price row */}
-        {isSale && salePrice ? (
+        {discounted && salePrice ? (
           <p className="text-lg">
             <span className="mr-2 text-white/80 line-through">
               {formatPeso(price)}
